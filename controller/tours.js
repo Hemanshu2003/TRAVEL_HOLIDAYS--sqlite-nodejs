@@ -1,9 +1,17 @@
-const asyncWrapper = require("../middleware/async");
-const db = require("../connectDB");
+const asyncWrapper = require('../middleware/async');
+const db = require('../connectDB');
 
 const getAllTour = asyncWrapper(async (req, res) => {
   const allTours = `SELECT * FROM TOURS`;
   db.all(allTours, (err, tours) => {
+    if (err) console.log(err);
+    else res.status(200).json({ tours });
+  });
+});
+const getATour = asyncWrapper(async (req, res) => {
+  const { id: TOUR_ID } = req.params;
+  const TOUR = `SELECT * FROM TOURS WHERE ID = ${TOUR_ID}`;
+  db.all(TOUR, (err, tours) => {
     if (err) console.log(err);
     else res.status(200).json({ tours });
   });
@@ -45,8 +53,23 @@ const deleteTour = asyncWrapper(async (req, res) => {
   db.run(SQL);
 
   res.status(200).json({
-    message: "successfully deleted",
+    message: 'successfully deleted',
   });
 });
 
-module.exports = { getAllTour, createTour, deleteTour };
+const updateTour = asyncWrapper(async (req, res) => {
+  const { id: TOUR_ID } = req.params;
+  const { title, img_url, price, duration, location, description, ratings } =
+    req.body;
+  console.log(req.body);
+
+  const SQL = `UPDATE TOURS SET title = '${title}' , img_url = '${img_url}' , price = '${price}' , duration = '${duration}', location = '${location}' , desciption = '${description}' , rating = '${ratings}'  where ID = ${TOUR_ID}`;
+
+  db.run(SQL, (err) => console.log(err.message));
+
+  res.status(200).json({
+    message: 'successfully Updated!',
+  });
+});
+
+module.exports = { getAllTour, createTour, deleteTour, updateTour, getATour };

@@ -135,7 +135,7 @@ const renderCards = (cardDataFromBackend) => {
                 <g fill="#ff0000" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M10,2l-1,1h-6v2h18v-2h-6l-1,-1zM4.36523,7l1.70313,15h11.86328l1.70313,-15z"></path></g></g>
                 </svg></span>
               </p>
-
+              <a href="/tour?id=${data.ID}" class="edit__logo"> <img id="edit__logo" src="./edit-svgrepo-com.svg" /> </a>
               <a class="btn btn--green btn--small" href="#">DETAILS</a>
             </div>`;
 
