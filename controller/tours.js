@@ -63,9 +63,9 @@ const updateTour = asyncWrapper(async (req, res) => {
     req.body;
   console.log(req.body);
 
-  const SQL = `UPDATE TOURS SET title = '${title}' , img_url = '${img_url}' , price = '${price}' , duration = '${duration}', location = '${location}' , desciption = '${description}' , rating = '${ratings}'  where ID = ${TOUR_ID}`;
+  const SQL = `UPDATE TOURS SET title = '${title}' , img_url = '${img_url}' , price = '${price}}' , duration = '${duration}', location = '${location}' , description = '${description}' , ratings = '${ratings}'  where ID = ${TOUR_ID}`;
 
-  db.run(SQL, (err) => console.log(err.message));
+  db.run(SQL);
 
   res.status(200).json({
     message: 'successfully Updated!',
